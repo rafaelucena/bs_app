@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class ProductController extends Controller
 {
-    private $defaultUrl = 'http://localhost:81/api/products';
+    private $defaultUrl = 'http://localhost:8111/api/v2/products';
 
     public function index()
     {
@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function available($input = 1)
     {
         $client = new Client();
-        $request = $client->request('GET', "$this->defaultUrl/available/$input");
+        $request = $client->request('GET', "$this->defaultUrl?amount>=$input");
 
         $products = json_decode($request->getBody());
 
@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function having($input = 0)
     {
         $client = new Client();
-        $request = $client->request('GET', "$this->defaultUrl/available/having/$input");
+        $request = $client->request('GET', "$this->defaultUrl?amount>=$input");
 
         $products = json_decode($request->getBody());
 
