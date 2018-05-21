@@ -32,4 +32,24 @@ class Product
 
         return $this;
     }
+
+    public function findAll()
+    {
+        $request = $this->handler->request('GET', $this->baseUrl);
+        $result = array();
+
+        $found = json_decode($request->getBody(), 1);
+
+        foreach ($found as $find) {
+            $local = clone $this;
+
+            foreach ($this->attributes as $attribute) {
+                $local->{$attribute} = $find[$attribute];
+            }
+
+            $result[] = $local;
+        }
+
+        return $result;
+    }
 }

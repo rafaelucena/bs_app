@@ -12,10 +12,8 @@ class ProductController extends Controller
 
     public function index()
     {
-        $client = new Client();
-        $request = $client->request('GET', $this->defaultUrl);
-
-        $products = json_decode($request->getBody());
+        $products = new Product();
+        $products = $products->findAll();
 
         return view('index', compact('products'));
     }
