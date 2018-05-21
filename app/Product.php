@@ -66,4 +66,14 @@ class Product
             ]
         ]);
     }
+
+    public function save()
+    {
+        $this->handler->request('POST', $this->baseUrl, [
+            'form_params' => [
+                'name' => $this->name,
+                'amount' => $this->amount,
+            ]
+        ]);
+    }
 }

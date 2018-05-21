@@ -45,13 +45,12 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $client = new Client();
-        $client->request('POST', $this->defaultUrl, [
-            'form_params' => [
-                'name' => $request->get('name'),
-                'amount' => $request->get('amount'),
-            ]
-        ]);
+        $product = new Product();
+
+        $product->name = $request->get('name');
+        $product->amount = $request->get('amount');
+
+        $product->save();
 
         return redirect('products')->with('success', 'Information has been added');
     }
