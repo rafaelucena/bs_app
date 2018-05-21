@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 use GuzzleHttp\Client;
 
 class ProductController extends Controller
@@ -59,10 +60,8 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $client = new Client();
-        $request = $client->request('GET', "$this->defaultUrl/$id");
-
-        $product = json_decode($request->getBody());
+        $product = new Product();
+        $product = $product->find($id);
 
         return view('edit', compact('product','id'));
     }
