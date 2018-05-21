@@ -18,6 +18,10 @@ class Product
     {
         $this->baseUrl = 'http://localhost:8111/api/v2/products';
         $this->handler = new Client();
+
+        foreach ($this->attributes as $attribute) {
+            $this->{$attribute} = null;
+        }
     }
 
     public function find($id)
