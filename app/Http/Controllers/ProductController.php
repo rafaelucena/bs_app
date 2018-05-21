@@ -66,13 +66,13 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $client = new Client();
-        $client->request('PUT', "$this->defaultUrl/$id", [
-            'form_params' => [
-                'name' => $request->get('name'),
-                'amount' => $request->get('amount'),
-            ]
-        ]);
+        $product = new Product();
+        $product = $product->find($id);
+
+        $product->name = $request->get('name');
+        $product->amount = $request->get('amount');
+
+        $product->update();
 
         return redirect('products')->with('success', 'Information has been updated');
     }

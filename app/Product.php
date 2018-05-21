@@ -56,4 +56,14 @@ class Product
 
         return $result;
     }
+
+    public function update()
+    {
+        $this->handler->request('PUT', "$this->baseUrl/$this->id", [
+            'form_params' => [
+                'name' => $this->name,
+                'amount' => $this->amount,
+            ]
+        ]);
+    }
 }
