@@ -78,8 +78,9 @@ class ProductController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $client = new Client();
-        $client->request('DELETE', "$this->defaultUrl/$id");
+        $product = new Product();
+        $product = $product->find($id);
+        $product->delete();
 
         return redirect('products')->with('success', 'Information has been deleted');
     }

@@ -76,4 +76,9 @@ class Product
             ]
         ]);
     }
+
+    public function delete()
+    {
+        $this->handler->request('DELETE', "$this->baseUrl/$this->id");
+    }
 }
