@@ -37,9 +37,19 @@ class Product
         return $this;
     }
 
-    public function findAll()
+    public function findAll($query = array())
     {
-        $request = $this->handler->request('GET', $this->baseUrl);
+        if (empty($query)) {
+            $request = $this->handler->request('GET', $this->baseUrl);
+        } else {
+            $input = $query['amount'];
+            if ($input != '0') {
+                $request = $this->handler->request('GET', "$this->baseUrl?amount>=$input");
+            } else {
+                $request = $this->handler->request('GET', "$this->baseUrl?amount=$input");
+            }
+        }
+
         $result = array();
 
         $found = json_decode($request->getBody(), 1);
