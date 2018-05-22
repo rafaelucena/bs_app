@@ -16,9 +16,9 @@
         </div><br />
     @endif
     <a href="{{action('ProductController@index')}}" class="btn btn-success">Main list</a>
-    <a href="{{action('ProductController@available')}}" class="btn btn-warning">Available</a>
-    <a href="{{action('ProductController@available', ['input' => 0])}}" class="btn btn-warning">Unavailable</a>
-    <a href="{{action('ProductController@having', ['input' => 5])}}" class="btn btn-danger">Having more than 5</a>
+    <a href="{{action('ProductController@having', ['input' => 1])}}" class="btn btn-warning">Available</a>
+    <a href="{{action('ProductController@having', ['input' => 0])}}" class="btn btn-warning">Unavailable</a>
+    <a href="{{action('ProductController@having', ['input' => 6])}}" class="btn btn-danger">Having more than 5</a>
     <table class="table table-striped">
         <thead>
         <tr>
