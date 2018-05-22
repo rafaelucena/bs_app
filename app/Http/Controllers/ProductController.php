@@ -18,22 +18,10 @@ class ProductController extends Controller
         return view('index', compact('products'));
     }
 
-    public function available($input = 1)
-    {
-        $client = new Client();
-        $request = $client->request('GET', "$this->defaultUrl?amount>=$input");
-
-        $products = json_decode($request->getBody());
-
-        return view('index', compact('products'));
-    }
-
     public function having($input = 0)
     {
-        $client = new Client();
-        $request = $client->request('GET', "$this->defaultUrl?amount>=$input");
-
-        $products = json_decode($request->getBody());
+        $products = new Product();
+        $products = $products->findAll(['amount'=>$input]);
 
         return view('index', compact('products'));
     }
